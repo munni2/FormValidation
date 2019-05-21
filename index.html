@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Portfolio</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+ <style>
+    body{
+       font-family:verdana;
+    }
+    span{
+       color:red;
+    }
+ </style>   
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+<div class="practice">
+   <form id="my_form" method="post">
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" id="username"></td>
+                <td><span class="username_error_msg"></span></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" id="password"></td>
+                <td><span class="password_error_msg"></span></td>
+            </tr>
+            <tr>
+                <td>Confirm Password</td>
+                <td><input type="password" id="confirm_password"></td>
+                <td><span class="confirm_password_error_msg"></span></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" id="email"></td>
+                <td><span class="email_error_msg"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="button">Submit</button></td>
+                <td></td>
+            </tr>
+        </table>
+   </form>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- jquery-->
+<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+
+<script src="assets/js/main.js"></script>
+
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+    $(".hide").click(function(){
+        $(".container").hide('slow');
+    });
+    $(".show").click(function(){
+        $(".container").show('slow');
+    });
+    $(".toggle").click(function(){
+        $(".container").toggle('slow');
+    });
+});
+</script> -->
+
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#username").focusout(function(){
+            check_username();
+        });
+        $("#password").focusout(function(){
+            check_password();
+        });
+        $("#confirm_password").focusout(function(){
+            check_confirm_password();
+        });
+        $("#email").focusout(function(){
+            check_email();
+        });
+
+        function check_username(){
+            var username_length = $("#username").val().length;
+            if(username_length < 5 || username_length >20){
+                $(".username_error_msg").html("should be between 5-20 character");
+                $(".username_error_msg").show();
+                error_username = true;
+            }else{
+                $(".username_error_msg").hide();
+            }
+        }
+
+        function check_password(){
+            var password_length = $("#password").val().length;
+            if(password_length < 8){
+                $(".password_error_msg").html("should be minimum 8 character");
+                $(".password_error_msg").show();
+                error_password = true;
+            }else{
+                $(".password_error_msg").hide();
+            }
+        }
+
+        function check_confirm_password(){
+            var password_length = $("#password").val();
+            var confirm_password_length = $("#confirm_password").val();
+            if(password_length != confirm_password_length){
+                $(".confirm_password_error_msg").html("Password did not matched");
+                $(".confirm_password_error_msg").show();
+                error_confirm_password = true;
+            }else{
+                $(".confirm_password_error_msg").hide();
+            }
+        }
+
+        function check_email(){
+            var pattern = new  RegExp(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/i);
+            if(pattern.test($("#email").val())){
+               $(".email_error_msg").hide();
+            }else{
+                $(".email_error_msg").html("Invalid Email address");
+                $(".email_error_msg").show();
+                error_email = true;
+            }
+        }
+    });
+</script>
+
+
+
+</body>
+</html>
